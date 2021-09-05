@@ -1,0 +1,5 @@
+{
+    "token": "your bot's token",
+    "prefix": "dev!",
+    "mongooseConnectionString": ""
+}
