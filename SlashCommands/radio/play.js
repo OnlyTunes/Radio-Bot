@@ -74,22 +74,20 @@ module.exports = {
                 player = createAudioPlayer();
                 dispatcher = connection.subscribe(player);
                 const resource = createAudioResource(STREAMURL);
-                internetradio.getStationInfo(StreamURL, function(error, station) {
-                                const vcEmbed = new MessageEmbed().
-                                setColor('BLUE').
-                                setTitle('Joining your VC!').
-                                setFields(
-                                    { name: 'Currently Playing: ', value: `${station.title}`, inline: true }
-                                ).
-                                setTimestamp().
-                                setFooter(
-                                    `Requested by ${message.author.tag}`,
-                                    message.author.displayAvatarURL({
-                                        dynamic: true,
-                                    })
-                                )
-                                interaction.followUp({ embeds: [vcEmbed] });
-                                });   
+
+                const vcEmbed = new MessageEmbed().
+                    setColor('BLUE').
+                    setTitle('Joining your VC!').
+                    setDescription('Im joining now Hang on tight!').
+                    setTimestamp().
+                    setFooter(
+                        `Requested by ${interaction.user.tag}`,
+                        interaction.user.displayAvatarURL({
+                            dynamic: true,
+                        })
+                    )
+                interaction.followUp({ embeds: [vcEmbed] });
+                                   
 
                 await sleep(5000)
                 player.play(resource);
