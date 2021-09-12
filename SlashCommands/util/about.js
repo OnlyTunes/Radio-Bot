@@ -1,14 +1,14 @@
-const { Message, Client, MessageEmbed, MessageActionRow, MessageButton, Interaction } = require("discord.js");
+const { Message, Client, MessageEmbed, MessageActionRow, MessageButton, CommandInteraction } = require("discord.js");
 
 module.exports = {
-    name: "invite",
-    description: "Replies with an invite for the bot!",
+    name: "about",
+    description: "Helps explain the bot!",
     /**
      * @param {Client} client
-     * @param {Message} message
+     * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, message) => {
+     run: async (client,interaction, args) => {
         process.on('uncaughtException', (error, origin) => {
             console.log('----- Uncaught exception -----')
             console.log(error)
@@ -23,29 +23,29 @@ module.exports = {
             console.log(reason)
         })
 
-        const inviteURL = `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=242715315520&scope=bot%20applications.commands`
+        const Github = `https://github.com/OnlyTunes/Radio-Bot`
 
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setLabel('Invite Me')
+                    .setLabel('Github')
                     .setStyle('LINK')
-                    .setURL(inviteURL),
+                    .setURL(Github),
             );
         
         const embed = new MessageEmbed()
             .setColor('#E91E63')
-            .setTitle('Invite Me')
-            .setURL(inviteURL)
-            .setDescription('Use the button below to add the bot')
+            .setTitle('About Me')
+            .setURL(Github)
+            .setDescription('Im an easy to use open source Discord Radio bot. You can check me out using the button below!')
             .setFooter(
-                `Requested by ${message.author.tag}`,
-                message.author.displayAvatarURL({
+                `Requested by ${interaction.user.tag}`,
+                interaction.user.displayAvatarURL({
                     dynamic: true,
                 })
             );
 
-        await message.channel.send({ ephemeral: true, embeds: [embed], components: [row] });
+        await interaction.followUp({ ephemeral: true, embeds: [embed], components: [row] });
             
     }
 }

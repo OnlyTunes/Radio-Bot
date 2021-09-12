@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require('discord.js');
+const { CommandInteraction, Client, MessageEmbed } = require("discord.js");
 const prettyMilliseconds = require('pretty-ms');
 //config Stuff
 require('dotenv').config({path:'../.env'});
@@ -9,10 +9,10 @@ module.exports = {
     description: 'Gives users a overview of the bot!',
     /**
      * @param {Client} client
-     * @param {Message} message
+     * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, message) => {
+    run: async (client, interaction) => {
         process.on('uncaughtException', (error, origin) => {
             console.log('----- Uncaught exception -----')
             console.log(error)
@@ -36,7 +36,7 @@ module.exports = {
         }
 
         const WebSocketPing = client.ws.ping;
-        const MessagePing = Date.now() - message.createdTimestamp;
+        const MessagePing = Date.now() - interaction.createdTimestamp;
         const BOTuptime = prettyMilliseconds(client.uptime);
 
         const promises = [
@@ -63,13 +63,13 @@ module.exports = {
                 )
                 .setTimestamp()
                 .setFooter(
-                    `Requested by ${message.author.tag}`,
-                    message.author.displayAvatarURL({
+                    `Requested by ${interaction.user.tag}`,
+                    interaction.user.displayAvatarURL({
                         dynamic: true,
                     })
                 );
 
-            message.channel.send({ embeds: [InfoEmbed] });
+            interaction.followUp({ embeds: [InfoEmbed] });
     })
     .catch(console.error);
     },

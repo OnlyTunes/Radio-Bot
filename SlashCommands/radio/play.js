@@ -1,7 +1,7 @@
-const { Message, Client, VoiceConnection, Channel, MessageEmbed, GuildPreviewEmoji } = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const internetradio = require('node-internet-radio');
 //env
-require('dotenv').config({path:'../.env'});
+require('dotenv').config({path:'./.env'});
 const STREAMURL = process.env.STREAMURL
 
 //requirements for VC
@@ -23,10 +23,10 @@ module.exports = {
     
     /**
      * @param {Client} client
-     * @param {Message} message
+     * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, message, args) => {
+    run: async (client, interaction, args) => {
         process.on('uncaughtException', (error, origin) => {
             console.log('----- Uncaught exception -----')
             console.log(error)
@@ -43,11 +43,11 @@ module.exports = {
 
         try {
             global.connection = await joinVoiceChannel({
-                channelId: message.member.voice.channel.id,
-                guildId: message.guild.id,
+                channelId: interaction.member.voice.channel.id,
+                guildId: interaction.guild.id,
                 selfDeaf: true,
                 selfMute: false,
-                adapterCreator: message.guild.voiceAdapterCreator,
+                adapterCreator: interaction.guild.voiceAdapterCreator,
             });
         } catch (e) {
             console.log(e);
@@ -60,17 +60,17 @@ module.exports = {
                     ).
                     setTimestamp().
                     setFooter(
-                        `Requested by ${message.author.tag}`,
-                        message.author.displayAvatarURL({
-                            dynamic: true,
+                        `Requested by ${interaction.user.tag}`,
+                        interaction.user.displayAvatarURL({
+                            dynmic: true,
                         })
                     )
-                return message.reply({ embeds: [NoVCEmbed] });
+                return interaction.followUp({ embeds: [NoVCEmbed] });
                     
             }
 
             try {
-                const connection = getVoiceConnection(message.guild.id);
+                const connection = getVoiceConnection(interaction.guild.id);
                 player = createAudioPlayer();
                 dispatcher = connection.subscribe(player);
                 const resource = createAudioResource(STREAMURL);
@@ -88,7 +88,7 @@ module.exports = {
                                         dynamic: true,
                                     })
                                 )
-                                message.reply({ embeds: [vcEmbed] });
+                                interaction.followUp({ embeds: [vcEmbed] });
                                 });   
 
                 await sleep(5000)
@@ -113,7 +113,7 @@ module.exports = {
                         ).
                         setTimestamp()
 
-                    message.channel.send({ embeds: StreamEembed });
+                    interaction.followUp({ embeds: StreamEembed });
                         
             }
             

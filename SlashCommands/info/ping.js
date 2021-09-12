@@ -2,8 +2,8 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "ping",
-    description: "returns websocket ping",
-
+    aliases: ['p'],
+    description: "Responds with the current latency!",
     /**
      *
      * @param {Client} client
@@ -12,19 +12,32 @@ module.exports = {
      */
     run: async (client, interaction, args) => {
 
+        process.on('uncaughtException', (error, origin) => {
+            console.log('----- Uncaught exception -----')
+            console.log(error)
+            console.log('----- Exception origin -----')
+            console.log(origin)
+        })
+        
+        process.on('unhandledRejection', (reason, promise) => {
+            console.log('----- Unhandled Rejection at -----')
+            console.log(promise)
+            console.log('----- Reason -----')
+            console.log(reason)
+        })
+
         const WebSocketPing = client.ws.ping
         const MessagePing = Date.now() - interaction.createdTimestamp;
 
-        const pingEmbed = new MessageEmbed().
-             setColor('GREEN').
-             setTitle('Bot Ping').
-             addFields(
-                 { name: 'WebSocket: ', value: `${WebSocketPing <= 200 ? "<:online:879107813606055946>" : WebSocketPing <= 400 ? "<:away:879108099024228362>" : "<:dnd:879108071513817109>"} ${WebSocketPing}ms` },
-                 { name: 'Message: ', value: `${MessagePing <= 200 ? "<:online:879107813606055946>" : MessagePing <= 400 ? "<:away:879108099024228362>" : "<:dnd:879108071513817109>"} ${MessagePing}ms` },
-                // { name: 'API: ', value: `${APIping <= 200 ? "<:online:879107813606055946>" : APIping <= 400 ? "<:away:879108099024228362>" : "<:dnd:879108071513817109>"} ${APIping}ms` }
-             ).
-             setTimestamp();
-         
-            interaction.followUp({ embeds: [pingEmbed] });
+        const pingEmbed = new MessageEmbed()
+            .setColor('GREEN')
+            .setTitle('Bot Ping')
+            .addFields(
+               { name: 'WebSocket: ', value: `${WebSocketPing <= 200 ? "🟢" : WebSocketPing <= 400 ? "🟠" : "🔴"} ${WebSocketPing}ms` },
+               { name: 'Message: ', value: `${MessagePing <= 200 ? "🟢" : MessagePing <= 400 ? "🟠" : "🔴"} ${MessagePing}ms` },
+            )
+            .setTimestamp();
+    
+       interaction.followUp({ embeds: [pingEmbed] });
     },
 };

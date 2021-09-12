@@ -1,5 +1,5 @@
 const { Client, Collection } = require("discord.js");
-require('dotenv').config();
+require('dotenv').config({path:'./.env'});
 
 const client = new Client({
     intents: 32767,
@@ -10,11 +10,10 @@ module.exports = client;
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.aliases = new Collection();
-//client.config = require("./config.json");
-client.token = process.env.DISCORD_TOKEN;
+client.token = process.env.TOKEN;
 client.prefix = process.env.PREFIX;
 
 // Initializing the project
 require("./handler")(client);
 
-client.login(client.token);
+client.login(process.env.TOKEN);

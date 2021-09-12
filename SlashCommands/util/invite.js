@@ -1,14 +1,14 @@
-const { Message, Client, MessageEmbed, MessageActionRow, MessageButton, Interaction } = require("discord.js");
+const { Message, Client, MessageEmbed, MessageActionRow, MessageButton, CommandInteraction } = require("discord.js");
 
 module.exports = {
     name: "invite",
     description: "Replies with an invite for the bot!",
     /**
      * @param {Client} client
-     * @param {Message} message
+     * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, message) => {
+    run: async (client,interaction, args) => {
         process.on('uncaughtException', (error, origin) => {
             console.log('----- Uncaught exception -----')
             console.log(error)
@@ -39,13 +39,13 @@ module.exports = {
             .setURL(inviteURL)
             .setDescription('Use the button below to add the bot')
             .setFooter(
-                `Requested by ${message.author.tag}`,
-                message.author.displayAvatarURL({
+                `Requested by ${interaction.user.tag}`,
+                interaction.user.displayAvatarURL({
                     dynamic: true,
                 })
             );
 
-        await message.channel.send({ ephemeral: true, embeds: [embed], components: [row] });
+        await interaction.followUp({ ephemeral: true, embeds: [embed], components: [row] });
             
     }
 }

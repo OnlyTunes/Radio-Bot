@@ -1,8 +1,8 @@
 const { Message, Client, MessageEmbed, MessageActionRow, MessageButton, Interaction } = require("discord.js");
 
 module.exports = {
-    name: "invite",
-    description: "Replies with an invite for the bot!",
+    name: "dev",
+    description: "Provides links back to the Developer!",
     /**
      * @param {Client} client
      * @param {Message} message
@@ -23,21 +23,21 @@ module.exports = {
             console.log(reason)
         })
 
-        const inviteURL = `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=242715315520&scope=bot%20applications.commands`
+        const GHprofile = `https://github.com/OnlyTunes`
 
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setLabel('Invite Me')
+                    .setLabel('Developer Profile!')
                     .setStyle('LINK')
-                    .setURL(inviteURL),
+                    .setURL(GHprofile),
             );
         
         const embed = new MessageEmbed()
             .setColor('#E91E63')
-            .setTitle('Invite Me')
-            .setURL(inviteURL)
-            .setDescription('Use the button below to add the bot')
+            .setTitle('Developer!')
+            .setURL(GHprofile)
+            .setDescription('Hi, If you like this bot and would like to check out any more of my projects then check my profile out below! Many thanks Brayd ( braydford04#0001 on discord )')
             .setFooter(
                 `Requested by ${message.author.tag}`,
                 message.author.displayAvatarURL({

@@ -7,3 +7,11 @@ Welcome to GRadio Bot. The Simplest and Greatest Radio bot.
 ## THIS PROJECT IS IN DEVELOPMENT! 
 #### Please check back soon to see the progress if you still need help then please contact me VIA discord.
 ![](https://gh-shield.onlytunes.uk/api/shield/402908830532501526?theme=discord)
+
+## .env File setup ( Same as .env.example )
+```
+TOKEN=<token goes here>
+PREFIX=<Bot Prfix goes here>
+STREAMURL=<Radio Stream URL>
+EXPERIMENTAL=yes
+```
