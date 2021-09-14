@@ -74,8 +74,7 @@ module.exports = {
                 player = createAudioPlayer();
                 dispatcher = connection.subscribe(player);
                 const resource = createAudioResource(STREAMURL);
-                internetradio.getStationInfo(StreamURL, function(error, station) {
-                                const vcEmbed = new MessageEmbed().
+                            const vcEmbed = new MessageEmbed().
                                 setColor('BLUE').
                                 setTitle('Joining your VC!').
                                 setFields(
@@ -88,8 +87,7 @@ module.exports = {
                                         dynamic: true,
                                     })
                                 )
-                                message.reply({ embeds: [vcEmbed] });
-                                });   
+                            message.reply({ embeds: [vcEmbed] });
 
                 await sleep(5000)
                 player.play(resource);
