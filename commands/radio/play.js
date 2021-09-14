@@ -78,7 +78,7 @@ module.exports = {
                                 setColor('BLUE').
                                 setTitle('Joining your VC!').
                                 setFields(
-                                    { name: 'Currently Playing: ', value: `${station.title}`, inline: true }
+                                    { name: 'Now joining!', value: `please wait while playback starts!`, inline: true }
                                 ).
                                 setTimestamp().
                                 setFooter(
