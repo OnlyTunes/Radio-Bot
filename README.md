@@ -1,6 +1,6 @@
 Welcome to open radio Bot. The Simplest and Greatest Radio bot.
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![wakatime](https://wakatime.com/badge/github/OnlyTunes/Radio-bot.svg)](https://wakatime.com/badge/github/OnlyTunes/Radio-bot) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/OnlyTunes/Radio-Bot) ![Lines of code](https://img.shields.io/tokei/lines/github/OnlyTunes/Radio-Bot) [![CI to Docker Hub](https://github.com/OnlyTunes/Radio-Bot/actions/workflows/build.yml/badge.svg)](https://github.com/OnlyTunes/Radio-Bot/actions/workflows/build.yml) [![Github tag](https://badgen.net/github/tag/OnlyTunes/Radio-Bot)](https://github.com/OnlyTunes/Radio-Bot/tags/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![wakatime](https://wakatime.com/badge/github/OnlyTunes/Radio-bot.svg)](https://wakatime.com/badge/github/OnlyTunes/Radio-bot) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/OnlyTunes/Radio-Bot) ![Lines of code](https://img.shields.io/tokei/lines/github/OnlyTunes/Radio-Bot) [![CI to Docker Hub](https://github.com/OnlyTunes/Radio-Bot/actions/workflows/build.yml/badge.svg)](https://github.com/OnlyTunes/Radio-Bot/actions/workflows/build.yml) [![Github tag](https://badgen.net/github/tag/OnlyTunes/Radio-Bot)](https://github.com/OnlyTunes/Radio-Bot/tags/) ![Docker Pulls](https://img.shields.io/docker/pulls/onlytunes/open-radio-bot)
 
 -------
 
@@ -25,6 +25,6 @@ then add the bot with the button below!
 TOKEN=<token goes here>
 PREFIX=<Bot Prfix goes here>
 STREAMURL=<Radio Stream URL>
-EXPERIMENTAL=yes
+EXPERIMENTAL=<yes/no>
 OWNERID=<Your discord ID>
 ```
