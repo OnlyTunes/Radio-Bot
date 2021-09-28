@@ -1,5 +1,5 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-const internetradio = require('node-internet-radio');
+ 
 //env
 require('dotenv').config({path:'./.env'});
 const STREAMURL = process.env.STREAMURL
